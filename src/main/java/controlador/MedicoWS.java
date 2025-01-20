@@ -17,7 +17,7 @@ public class MedicoWS {
 
     //localhost:8081/api/mostrarmedicos
     @GetMapping("/mostrarmedicos")
-    public List<Medico>mostrarmedicos(){
+    public List<?>mostrarmedicos(){
         return imp.listamedicos();
     }
 
