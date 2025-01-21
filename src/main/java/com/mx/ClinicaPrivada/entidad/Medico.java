@@ -10,7 +10,6 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 @EqualsAndHashCode(of = "id")
 public class Medico {
 
@@ -33,6 +32,8 @@ public class Medico {
     @Column(name = "especialidad")
     private String especialidad;
 
+    private boolean activo;
+
     public Medico (DatosRegistroMedico datosRegistroMedico) {
         this.nombre=datosRegistroMedico.nombre();
         this.apellidopaterno=datosRegistroMedico.apellidopaterno();
@@ -41,5 +42,6 @@ public class Medico {
         this.cedula=datosRegistroMedico.cedula();
         this.email=datosRegistroMedico.email();
         this.especialidad=datosRegistroMedico.especialidad();
+        this.activo=true;
     }
     }

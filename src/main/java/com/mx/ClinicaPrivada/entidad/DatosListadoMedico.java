@@ -13,8 +13,13 @@ public record DatosListadoMedico(
 
                                  String email,
 
-                                 String especialidad) {
+                                 String especialidad,
+
+                                 boolean activo) {
+
     public DatosListadoMedico (Medico medico){
-        this( medico.getNombre(), medico.getApellidopaterno(), medico.getApellidomaterno(), medico.getTelefono(), medico.getCedula(), medico.getEmail(), medico.getEspecialidad());
+        this( medico.getNombre(), medico.getApellidopaterno(), medico.getApellidomaterno(),
+                medico.getTelefono(), medico.getCedula(), medico.getEmail(),
+                medico.getEspecialidad(),medico.isActivo());
     }
 }
