@@ -29,23 +29,24 @@ public class Medico {
     private String cedula;
     @Column(name = "email")
     private String email;
+
     @Column(name = "especialidad")
     private String especialidad;
 
     private boolean activo;
 
-    public Medico (DatosRegistroMedico datosRegistroMedico) {
-        this.nombre=datosRegistroMedico.nombre();
-        this.apellidopaterno=datosRegistroMedico.apellidopaterno();
-        this.apellidomaterno=datosRegistroMedico.apellidomaterno();
+    public Medico(DatosRegistroMedico datosRegistroMedico) {
+        this.nombre = datosRegistroMedico.nombre();
+        this.apellidopaterno = datosRegistroMedico.apellidopaterno();
+        this.apellidomaterno = datosRegistroMedico.apellidomaterno();
         this.telefono = datosRegistroMedico.telefono();
-        this.cedula=datosRegistroMedico.cedula();
-        this.email=datosRegistroMedico.email();
-        this.especialidad=datosRegistroMedico.especialidad();
-        this.activo=true;
+        this.cedula = datosRegistroMedico.cedula();
+        this.email = datosRegistroMedico.email();
+        this.especialidad = datosRegistroMedico.especialidad();
+        this.activo = true;
     }
 
     public void desactivarMedico() {
-        this.activo=false;
+        this.activo = false;
     }
-    }
+}

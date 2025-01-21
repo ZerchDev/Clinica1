@@ -1,11 +1,19 @@
 package com.mx.ClinicaPrivada.entidad;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface MedicoRepository extends JpaRepository<Medico,Integer> {
     @Query(value = "SELECT * FROM medicos", nativeQuery = true)
     List<Medico> listar();
+
+    @Query(value = "SELECT * FROM medicos where nombre = ?", nativeQuery = true)
+    Medico buscarPorNombre(@Param("nombre")String nombre);
+
+    @Query(value = "DELETE * FROM medicos WHERE medicos.id = ?", nativeQuery = true) void eliminarMedico(@Param("id")int id
+    );
 }

@@ -14,8 +14,9 @@ public record DatosRegistroMedico(
 
         String email,
 
-        String especialidad,
+        String especialidad
+        
+        
 
-        boolean activo
 ) {
 }

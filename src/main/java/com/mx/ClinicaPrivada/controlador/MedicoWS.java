@@ -1,14 +1,10 @@
 package com.mx.ClinicaPrivada.controlador;
 
 
-import com.mx.ClinicaPrivada.entidad.DatosListadoMedico;
 import com.mx.ClinicaPrivada.entidad.Medico;
 import com.mx.ClinicaPrivada.entidad.MedicoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -59,9 +55,29 @@ public class MedicoWS {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity eliminarMedico(@PathVariable int id){
-        Medico medico=medicoRepository.getReferenceById(id);
+    public ResponseEntity eliminarMedico(@PathVariable int id) {
+        Medico medico = medicoRepository.getReferenceById(id);
         medico.desactivarMedico();
         return ResponseEntity.noContent().build();
+    }
+
+    //localhost:8081/api/actualizarmedico
+    @PutMapping("/actualizarmedico")
+    @Transactional
+    public ResponseEntity actualizarMedico(@RequestBody Medico medico) {
+        String mensaje = "ACTUALIZADO";
+        medicoRepository.save(medico);
+        return ResponseEntity.status(HttpStatus.OK).body(mensaje);
+    }
+    //localhost:8081/api/buscarnombre
+    @GetMapping("/buscarnombre")
+    public ResponseEntity<?> buscarnombre(@RequestBody Medico medico) {
+        String mensaje = null;
+        if (medicoRepository.buscarPorNombre(medico.getNombre()) != null) {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(medicoRepository.buscarPorNombre(medico.getNombre()));
+        } else {
+            mensaje = "EL REGISTRO: '" + medico.getNombre() + "' NO EXISTE! VERIFICAR!";
+        }
+        return new ResponseEntity<>(mensaje, HttpStatus.BAD_REQUEST);
     }
 }
