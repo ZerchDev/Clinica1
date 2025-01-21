@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,13 +42,17 @@ public class MedicoWS {
 
     //localhost:8081/api/guardarmedico
     @PostMapping("/guardarmedico")
-    public void guardarmedico(@RequestBody Medico medico) {
+    public ResponseEntity guardarmedico(@RequestBody Medico medico) {
+        String mensaje = "GUARDADO!!";
         medicoRepository.save(medico);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
     }
 
     //localhost:8081/api/eliminarmedico
     @DeleteMapping("/eliminarmedico")
-    public void eliminarMedico(@RequestBody Medico medico){
+    public ResponseEntity eliminarMedico(@RequestBody Medico medico) {
+        String mensaje = "ELIMINADO!!!";
         medicoRepository.delete(medico);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
     }
 }
