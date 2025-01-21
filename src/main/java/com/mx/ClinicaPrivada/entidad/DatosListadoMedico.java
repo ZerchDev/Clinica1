@@ -1,12 +1,13 @@
 package com.mx.ClinicaPrivada.entidad;
 
-public record DatosListadoMedico(String nombre,
+public record DatosListadoMedico(
+                                 String nombre,
 
-                                 String apellidoPaterno,
+                                 String apellidopaterno,
 
-                                 String apellidoMaterno,
+                                 String apellidomaterno,
 
-                                 int telefono,
+                                 String telefono,
 
                                  String cedula,
 
@@ -14,6 +15,6 @@ public record DatosListadoMedico(String nombre,
 
                                  String especialidad) {
     public DatosListadoMedico (Medico medico){
-        this(medico.getNombre(), medico.getApellidoPaterno(), medico.getApellidoMaterno(), medico.getTelefono(), medico.getCedula(), medico.getEmail(), medico.getEspecialidad());
+        this( medico.getNombre(), medico.getApellidopaterno(), medico.getApellidomaterno(), medico.getTelefono(), medico.getCedula(), medico.getEmail(), medico.getEspecialidad());
     }
 }

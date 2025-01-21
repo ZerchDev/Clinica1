@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,7 +22,7 @@ public class MedicoWS {
     //localhost:8081/api/mostrarmedicos
     //@GetMapping("/mostrarmedicos")
     //public List<Medico>mostrarmedicos(){
-      //  return imp.listamedicos();
+    //  return imp.listamedicos();
     //}
 
     @GetMapping("/mostrarmedicos")
@@ -32,10 +30,23 @@ public class MedicoWS {
         return medicoRepository.findAll(paginacion).map(DatosListadoMedico::new);
     }
 
+
+    //localhost:8081/api/mostrarmedicosnormal
     @GetMapping("/mostrarmedicosnormal")
-    public List<Medico>listado(){
-        return medicoRepository.findAll();
+    public List<?> mostrarmedicosnormal() {
+        return medicoRepository.listar();
         //System.out.println("si se manda a llamar elmetodo");
     }
 
+    //localhost:8081/api/guardarmedico
+    @PostMapping("/guardarmedico")
+    public void guardarmedico(@RequestBody Medico medico) {
+        medicoRepository.save(medico);
+    }
+
+    //localhost:8081/api/eliminarmedico
+    @DeleteMapping("/eliminarmedico")
+    public void eliminarMedico(@RequestBody Medico medico){
+        medicoRepository.delete(medico);
+    }
 }

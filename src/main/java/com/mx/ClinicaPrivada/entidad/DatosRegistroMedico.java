@@ -1,13 +1,14 @@
 package com.mx.ClinicaPrivada.entidad;
 
 public record DatosRegistroMedico(
+
         String nombre,
         
-        String apellidoPaterno,
+        String apellidopaterno,
         
-        String apellidoMaterno,
+        String apellidomaterno,
         
-        int telefono,
+        String telefono,
 
         String cedula,
 
