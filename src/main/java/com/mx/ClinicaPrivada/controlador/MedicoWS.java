@@ -25,10 +25,10 @@ public class MedicoWS {
     //  return imp.listamedicos();
     //}
 
-    @GetMapping("/mostrarmedicos")
+    /*@GetMapping("/mostrarmedicos")
     public Page<DatosListadoMedico> listadoMedicos(@PageableDefault(size = 2) Pageable paginacion) {
         return medicoRepository.findAll(paginacion).map(DatosListadoMedico::new);
-    }
+    }*/
 
 
     //localhost:8081/api/mostrarmedicosnormal
