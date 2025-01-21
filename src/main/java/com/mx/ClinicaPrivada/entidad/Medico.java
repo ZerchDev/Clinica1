@@ -44,4 +44,8 @@ public class Medico {
         this.especialidad=datosRegistroMedico.especialidad();
         this.activo=true;
     }
+
+    public void desactivarMedico() {
+        this.activo=false;
+    }
     }

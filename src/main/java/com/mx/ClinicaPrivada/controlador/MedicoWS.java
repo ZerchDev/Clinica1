@@ -4,6 +4,7 @@ package com.mx.ClinicaPrivada.controlador;
 import com.mx.ClinicaPrivada.entidad.DatosListadoMedico;
 import com.mx.ClinicaPrivada.entidad.Medico;
 import com.mx.ClinicaPrivada.entidad.MedicoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -54,5 +55,13 @@ public class MedicoWS {
         String mensaje = "ELIMINADO!!!";
         medicoRepository.delete(medico);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity eliminarMedico(@PathVariable int id){
+        Medico medico=medicoRepository.getReferenceById(id);
+        medico.desactivarMedico();
+        return ResponseEntity.noContent().build();
     }
 }
