@@ -14,7 +14,7 @@ public record DatosRegistroMedico(
 
         String email,
 
-        String especialidad
+        Especialidad especialidad
         
         
 

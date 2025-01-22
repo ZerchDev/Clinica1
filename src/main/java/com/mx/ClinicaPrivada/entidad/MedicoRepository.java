@@ -14,6 +14,5 @@ public interface MedicoRepository extends JpaRepository<Medico,Integer> {
     @Query(value = "SELECT * FROM medicos where nombre = ?", nativeQuery = true)
     Medico buscarPorNombre(@Param("nombre")String nombre);
 
-    @Query(value = "DELETE * FROM medicos WHERE medicos.id = ?", nativeQuery = true) void eliminarMedico(@Param("id")int id
-    );
+
 }

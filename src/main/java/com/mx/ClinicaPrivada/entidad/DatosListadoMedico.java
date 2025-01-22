@@ -20,6 +20,6 @@ public record DatosListadoMedico(
     public DatosListadoMedico (Medico medico){
         this( medico.getNombre(), medico.getApellidopaterno(), medico.getApellidomaterno(),
                 medico.getTelefono(), medico.getCedula(), medico.getEmail(),
-                medico.getEspecialidad(),medico.isActivo());
+                medico.getEspecialidad().toString(),medico.isActivo());
     }
 }

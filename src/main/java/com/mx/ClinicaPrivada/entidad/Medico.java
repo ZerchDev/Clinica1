@@ -31,7 +31,8 @@ public class Medico {
     private String email;
 
     @Column(name = "especialidad")
-    private String especialidad;
+    @Enumerated(EnumType.STRING)
+    private Especialidad especialidad;
 
     private boolean activo;
 
@@ -42,7 +43,7 @@ public class Medico {
         this.telefono = datosRegistroMedico.telefono();
         this.cedula = datosRegistroMedico.cedula();
         this.email = datosRegistroMedico.email();
-        this.especialidad = datosRegistroMedico.especialidad();
+        this.especialidad=datosRegistroMedico.especialidad();
         this.activo = true;
     }
 
