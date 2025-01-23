@@ -3,6 +3,8 @@ package com.mx.ClinicaPrivada.Pacientes.controlador;
 import com.mx.ClinicaPrivada.Pacientes.entidad.Paciente;
 import com.mx.ClinicaPrivada.Pacientes.entidad.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -20,30 +22,41 @@ public class PacienteWS {
 
     //localhost:8081/api/listapacientes
     @GetMapping("/listapacientes")
-    public List<?> listaPacientes() {
+    public List<Paciente> listaPacientes() {
         return pacienteRepository.findAll(Sort.by(Sort.Order.asc("id")));
 
     }
 
     //localhost:8081/api/guardar
     @PostMapping("/guardar")
-    public ResponseEntity<?> guardarPaciente(@RequestBody Paciente paciente) {
+    public ResponseEntity guardarPaciente(@RequestBody Paciente paciente) {
         String mensaje = "GUARDADO!";
         pacienteRepository.save(paciente);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
+        return ResponseEntity.status(HttpStatus.OK).body(mensaje);
     }
 
     //localhost:8081/api/daralta
     @PutMapping("/daralta")
-    public ResponseEntity<?> altaPaciente(@RequestBody Paciente paciente) {
+    public ResponseEntity altaPaciente(@RequestBody Paciente paciente) {
         String mensaje = " ";
         if (paciente.isEstado() == true) {
             paciente.setFechaSalida(null);
         } else {
             paciente.setFechaSalida(LocalDateTime.now());
         }
-
         pacienteRepository.save(paciente);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
+    }
+
+    //localhost:8081/api/pacientesinternados
+    @GetMapping("/pacientesinternados")
+    public List<Paciente> pacientesPagina() {
+        return pacienteRepository.findByEstadoTrue(); // Página 0, 10 resultados
+    }
+
+    //localhost:8081/api/pacientesConAltaMedica
+    @GetMapping("/pacientesConAltaMedica")
+    public List<Paciente> pacientesConAltaMedica() {
+        return pacienteRepository.findByEstadoFalse(); // Página 0, 10 resultados
     }
 }

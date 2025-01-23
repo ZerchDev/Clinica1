@@ -3,6 +3,7 @@ package com.mx.ClinicaPrivada.Medicos.controlador;
 
 import com.mx.ClinicaPrivada.Medicos.entidad.Medico;
 import com.mx.ClinicaPrivada.Medicos.entidad.MedicoRepository;
+import com.mx.ClinicaPrivada.Pacientes.entidad.Paciente;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -79,5 +80,13 @@ public class MedicoWS {
             mensaje = "EL REGISTRO: '" + medico.getNombre() + "' NO EXISTE! VERIFICAR!";
         }
         return new ResponseEntity<>(mensaje, HttpStatus.BAD_REQUEST);
+    }
+
+    //localhost:8081/api/medicosActivos
+    @GetMapping("/medicosActivos")
+    public List<Medico> medicosActivos() {
+        return  medicoRepository.findByActivoTrue(); // Página 0, 10 resultados
+
+
     }
 }

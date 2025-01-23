@@ -1,5 +1,6 @@
 package com.mx.ClinicaPrivada.Medicos.entidad;
 
+import com.mx.ClinicaPrivada.Pacientes.entidad.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,4 +15,5 @@ public interface MedicoRepository extends JpaRepository<Medico,Integer> {
     Medico buscarPorNombre(@Param("nombre")String nombre);
 
 
+    List<Medico> findByActivoTrue();
 }
