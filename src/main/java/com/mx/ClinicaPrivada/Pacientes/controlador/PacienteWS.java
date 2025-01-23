@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -19,23 +20,29 @@ public class PacienteWS {
 
     //localhost:8081/api/listapacientes
     @GetMapping("/listapacientes")
-    public List<?> listaPacientes(){
-      return pacienteRepository.findAll(Sort.by(Sort.Order.asc("id")));
+    public List<?> listaPacientes() {
+        return pacienteRepository.findAll(Sort.by(Sort.Order.asc("id")));
 
     }
 
     //localhost:8081/api/guardar
     @PostMapping("/guardar")
-    public ResponseEntity<?> guardarPaciente(@RequestBody Paciente paciente){
+    public ResponseEntity<?> guardarPaciente(@RequestBody Paciente paciente) {
         String mensaje = "GUARDADO!";
         pacienteRepository.save(paciente);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
     }
 
     //localhost:8081/api/daralta
-    @PostMapping("/daralta")
-    public ResponseEntity<?> altaPaciente(@RequestBody Paciente paciente){
+    @PutMapping("/daralta")
+    public ResponseEntity<?> altaPaciente(@RequestBody Paciente paciente) {
         String mensaje = " ";
+        if (paciente.isEstado() == true) {
+            paciente.setFechaSalida(null);
+        } else {
+            paciente.setFechaSalida(LocalDateTime.now());
+        }
+
         pacienteRepository.save(paciente);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
     }
