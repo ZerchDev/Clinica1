@@ -29,7 +29,7 @@ public record DatosRegistroPaciente(
 
         LocalDateTime fechaSalida,
 
-        boolean activo,
+        //boolean activo,
 
         String observaciones
 ) {

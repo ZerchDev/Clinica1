@@ -58,8 +58,8 @@ public class Paciente {
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(name = "fechasalida")
     private LocalDateTime fechaSalida;
-    //@Column(name = "activo")
-    private boolean activo;
+    @Column(name = "estado")
+    private boolean estado;
     @Column(name = "observaciones")
     private String observaciones;
 
@@ -68,10 +68,10 @@ public class Paciente {
         this.fechaRegistro = LocalDateTime.now();  // Asigna la fecha y hora actual
     }
 
-    /*@PrePersist
+
     public void alta() {
         this.fechaSalida = LocalDateTime.now();  // Asigna la fecha y hora actual
-    }*/
+    }
 
     public Paciente(DatosRegistroPaciente datosRegistroPaciente) {
         this.nombre = datosRegistroPaciente.nombre();
@@ -85,12 +85,12 @@ public class Paciente {
         this.fechaRegistro = datosRegistroPaciente.fechaRegistro();
         this.habitacion = datosRegistroPaciente.habitacion();
         this.fechaSalida = datosRegistroPaciente.fechaSalida();
-        this.activo = true;
+        this.estado = true;
         this.observaciones = datosRegistroPaciente.observaciones();
     }
 
     public void altaPaciente(){
-        this.activo = false;
+        this.estado = false;
     }
 
 }
