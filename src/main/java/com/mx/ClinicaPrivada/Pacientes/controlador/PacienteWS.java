@@ -31,4 +31,12 @@ public class PacienteWS {
         pacienteRepository.save(paciente);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
     }
+
+    //localhost:8081/api/daralta
+    @PostMapping("/daralta")
+    public ResponseEntity<?> altaPaciente(@RequestBody Paciente paciente){
+        String mensaje = " ";
+        pacienteRepository.save(paciente);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
+    }
 }
