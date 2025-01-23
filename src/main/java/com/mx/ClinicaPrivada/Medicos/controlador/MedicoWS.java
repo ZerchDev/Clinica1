@@ -1,8 +1,8 @@
-package com.mx.ClinicaPrivada.controlador;
+package com.mx.ClinicaPrivada.Medicos.controlador;
 
 
-import com.mx.ClinicaPrivada.entidad.Medico;
-import com.mx.ClinicaPrivada.entidad.MedicoRepository;
+import com.mx.ClinicaPrivada.Medicos.entidad.Medico;
+import com.mx.ClinicaPrivada.Medicos.entidad.MedicoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

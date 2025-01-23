@@ -1,4 +1,4 @@
-package com.mx.ClinicaPrivada.entidad;
+package com.mx.ClinicaPrivada.Medicos.entidad;
 
 import jakarta.persistence.*;
 import lombok.*;

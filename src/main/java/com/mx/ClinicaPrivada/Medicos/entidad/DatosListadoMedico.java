@@ -1,4 +1,4 @@
-package com.mx.ClinicaPrivada.entidad;
+package com.mx.ClinicaPrivada.Medicos.entidad;
 
 public record DatosListadoMedico(
                                  String nombre,
