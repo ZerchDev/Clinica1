@@ -21,10 +21,19 @@ public record DatosListadoPaciente(
 
         String direccion,
 
-        LocalDateTime fechaRegistro) {
+        LocalDateTime fechaRegistro,
+
+        String habitacion,
+
+        LocalDateTime fechaSalida,
+
+        boolean activo,
+
+        String observaciones) {
     public DatosListadoPaciente(Paciente paciente) {
         this(paciente.getNombre(), paciente.getApellidoPaterno(), paciente.getApellidoMaterno(),
                 paciente.getFechaNacimiento(), paciente.getGenero().toString(), paciente.getTelefono(), paciente.getEmail(),
-                paciente.getDireccion(), paciente.getFechaRegistro());
+                paciente.getDireccion(), paciente.getFechaRegistro(), paciente.getHabitacion(), paciente.getFechaSalida(),
+                paciente.isActivo(), paciente.getObservaciones());
     }
 }

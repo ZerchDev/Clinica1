@@ -3,6 +3,7 @@ package com.mx.ClinicaPrivada.Pacientes.controlador;
 import com.mx.ClinicaPrivada.Pacientes.entidad.Paciente;
 import com.mx.ClinicaPrivada.Pacientes.entidad.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class PacienteWS {
     //localhost:8081/api/listapacientes
     @GetMapping("/listapacientes")
     public List<?> listaPacientes(){
-      return pacienteRepository.listarPaciente();
+      return pacienteRepository.findAll(Sort.by(Sort.Order.asc("id")));
 
     }
 

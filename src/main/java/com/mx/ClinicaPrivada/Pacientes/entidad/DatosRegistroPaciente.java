@@ -1,5 +1,8 @@
 package com.mx.ClinicaPrivada.Pacientes.entidad;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Column;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -20,6 +23,14 @@ public record DatosRegistroPaciente(
 
         String direccion,
 
-        LocalDateTime fechaRegistro
+        LocalDateTime fechaRegistro,
+
+        String habitacion,
+
+        LocalDateTime fechaSalida,
+
+        boolean activo,
+
+        String observaciones
 ) {
 }
