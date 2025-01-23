@@ -1,4 +1,4 @@
-package com.mx.ClinicaPrivada.entidad;
+package com.mx.ClinicaPrivada.entidades.medicos;
 
 public enum Especialidad {
     GENERAL,
