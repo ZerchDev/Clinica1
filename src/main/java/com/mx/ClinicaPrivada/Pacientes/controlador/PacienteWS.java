@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -58,5 +59,15 @@ public class PacienteWS {
     @GetMapping("/pacientesConAltaMedica")
     public List<Paciente> pacientesConAltaMedica() {
         return pacienteRepository.findByEstadoFalse(); // Página 0, 10 resultados
+    }
+
+    //localhost:8081/api/eliminarPaciente
+    @DeleteMapping("/eliminarPaciente")
+    @Transactional
+    public ResponseEntity eliminarPacienteBD(@RequestBody Paciente paciente){
+    String mensaje="ELIMINADO DEFINITIVAMENTE";
+    pacienteRepository.delete(paciente);
+    return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
+
     }
 }
