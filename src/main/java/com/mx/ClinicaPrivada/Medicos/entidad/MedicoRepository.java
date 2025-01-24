@@ -16,4 +16,6 @@ public interface MedicoRepository extends JpaRepository<Medico,Integer> {
 
 
     List<Medico> findByActivoTrue();
+
+    List<Medico> findByActivoFalse();
 }

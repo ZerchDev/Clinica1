@@ -28,7 +28,7 @@ public class PacienteWS {
     }
 
     //localhost:8081/api/guardar
-    @PostMapping("/guardar")
+    @PostMapping("/guardarPaciente")
     public ResponseEntity guardarPaciente(@RequestBody Paciente paciente) {
         String mensaje = "GUARDADO!";
         pacienteRepository.save(paciente);

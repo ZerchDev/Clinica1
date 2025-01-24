@@ -33,7 +33,7 @@ public class MedicoWS {
 
     //localhost:8081/api/mostrarmedicosnormal
     @GetMapping("/mostrarmedicosnormal")
-    public List<?> mostrarmedicosnormal() {
+    public List<Medico> mostrarmedicosnormal() {
         return medicoRepository.listar();
         //System.out.println("si se manda a llamar elmetodo");
     }
@@ -72,21 +72,25 @@ public class MedicoWS {
     }
     //localhost:8081/api/buscarnombre
     @GetMapping("/buscarnombre")
-    public ResponseEntity<?> buscarnombre(@RequestBody Medico medico) {
+    public ResponseEntity<Medico> buscarnombre(@RequestBody Medico medico) {
         String mensaje = null;
         if (medicoRepository.buscarPorNombre(medico.getNombre()) != null) {
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(medicoRepository.buscarPorNombre(medico.getNombre()));
         } else {
             mensaje = "EL REGISTRO: '" + medico.getNombre() + "' NO EXISTE! VERIFICAR!";
         }
-        return new ResponseEntity<>(mensaje, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(mensaje, HttpStatus.BAD_REQUEST);
     }
 
     //localhost:8081/api/medicosActivos
     @GetMapping("/medicosActivos")
     public List<Medico> medicosActivos() {
-        return  medicoRepository.findByActivoTrue(); // Página 0, 10 resultados
+        return  medicoRepository.findByActivoTrue();
+    }
 
-
+    //localhost:8081/api/medicosInactivos
+    @GetMapping("/medicosInactivos")
+    public List<Medico> medicosInactivos() {
+        return  medicoRepository.findByActivoFalse();
     }
 }
