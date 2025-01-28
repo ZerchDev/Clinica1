@@ -1,6 +1,7 @@
 CREATE TABLE pacientes (
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    nombre VARCHAR(100) NOT NULL,
+    num_seguro VARCHAR(20) NOT NULL UNIQUE,
+    nombre VARCHAR(100) NOT NULL UNIQUE,
     apellidoPaterno VARCHAR(100) NOT NULL,
     apellidoMaterno VARCHAR(100) NOT NULL,
     fecha_nacimiento DATE NOT NULL,

@@ -1,7 +1,9 @@
 package com.mx.ClinicaPrivada.Pacientes.controlador;
 
+
 import com.mx.ClinicaPrivada.Pacientes.entidad.Paciente;
 import com.mx.ClinicaPrivada.Pacientes.entidad.PacienteRepository;
+import com.mx.ClinicaPrivada.Pacientes.entidad.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +20,10 @@ import java.util.List;
 @RequestMapping("/api")
 public class PacienteWS {
     @Autowired
-    PacienteRepository pacienteRepository;
+    private PacienteRepository pacienteRepository;
+
+    @Autowired
+    private PacienteService pacienteService;
 
     //localhost:8081/api/listapacientes
     @GetMapping("/listapacientes")
@@ -29,10 +34,10 @@ public class PacienteWS {
 
     //localhost:8081/api/guardar
     @PostMapping("/guardar")
-    public ResponseEntity guardarPaciente(@RequestBody Paciente paciente) {
-        String mensaje = "GUARDADO!";
-        pacienteRepository.save(paciente);
-        return ResponseEntity.status(HttpStatus.OK).body(mensaje);
+    public ResponseEntity<Paciente> crearPaciente(@RequestBody Paciente paciente) {
+        String mensaje = "GUARDADO!!";
+        Paciente pacienteCreado = pacienteService.crearPaciente(paciente);
+        return new ResponseEntity(mensaje, HttpStatus.CREATED);
     }
 
     //localhost:8081/api/daralta

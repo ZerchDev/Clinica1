@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record DatosListadoPaciente(
+        String num_seguro,
 
         String nombre,
 
@@ -31,7 +32,7 @@ public record DatosListadoPaciente(
 
         String observaciones) {
     public DatosListadoPaciente(Paciente paciente) {
-        this(paciente.getNombre(), paciente.getApellidoPaterno(), paciente.getApellidoMaterno(),
+        this(paciente.getNum_Seguro(), paciente.getNombre(), paciente.getApellidoPaterno(), paciente.getApellidoMaterno(),
                 paciente.getFechaNacimiento(), paciente.getGenero().toString(), paciente.getTelefono(), paciente.getEmail(),
                 paciente.getDireccion(), paciente.getFechaRegistro(), paciente.getHabitacion(), paciente.getFechaSalida(),
                 paciente.isEstado(), paciente.getObservaciones());

@@ -32,6 +32,8 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    @Column(name = "num_seguro")
+    private String num_Seguro;
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "apellidopaterno")
@@ -63,6 +65,7 @@ public class Paciente {
     @Column(name = "observaciones")
     private String observaciones;
 
+
     @PrePersist
     public void registro() {
         this.fechaRegistro = LocalDateTime.now();  // Asigna la fecha y hora actual
@@ -74,6 +77,7 @@ public class Paciente {
     }
 
     public Paciente(DatosRegistroPaciente datosRegistroPaciente) {
+        this.num_Seguro = datosRegistroPaciente.num_seguro();
         this.nombre = datosRegistroPaciente.nombre();
         this.apellidoPaterno = datosRegistroPaciente.apellidoPaterno();
         this.apellidoMaterno = datosRegistroPaciente.apellidoMaterno();

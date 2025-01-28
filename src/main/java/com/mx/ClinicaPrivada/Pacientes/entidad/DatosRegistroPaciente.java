@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record DatosRegistroPaciente(
+        String num_seguro,
+
         String nombre,
 
         String apellidoPaterno,
