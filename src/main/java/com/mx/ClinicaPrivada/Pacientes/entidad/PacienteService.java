@@ -11,7 +11,8 @@ public class PacienteService {
     public Paciente crearPaciente(Paciente paciente) {
         // Asegurémonos de asignar el num_seguro desde el principio si el id no está disponible
         if (paciente.getNum_Seguro() == null || paciente.getNum_Seguro().isEmpty()) {
-            paciente.setNum_Seguro("NSS-0");  // Asignamos un valor predeterminado temporal
+            paciente.setNum_Seguro("NSS-0");
+            // Asignamos un valor predeterminado temporal
         }
         // Guardamos el paciente para que se le asigne un ID
         Paciente pacienteGuardado = pacienteRepository.save(paciente);

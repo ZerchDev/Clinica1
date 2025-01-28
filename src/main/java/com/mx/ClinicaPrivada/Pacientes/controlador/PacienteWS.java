@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @RestController
@@ -53,10 +54,14 @@ public class PacienteWS {
     @PutMapping("/daralta")
     public ResponseEntity altaPaciente(@RequestBody Paciente paciente) {
         String mensaje = " ";
+        //SE CREO LA VARIABLE dateTime para truncar los milisegundos
+        LocalDateTime dateTime = LocalDateTime.now();
+        //truncatedTo(ChronoUnit.SECONDS) es para eliminar los milisegundos
+        LocalDateTime truncatedDateTime = dateTime.truncatedTo(ChronoUnit.SECONDS);
         if (paciente.isEstado() == true) {
             paciente.setFechaSalida(null);
         } else {
-            paciente.setFechaSalida(LocalDateTime.now());
+            paciente.setFechaSalida(truncatedDateTime);//truncatedDateTime se le asigno a FechaSalida ya sin los milisegundos
         }
         pacienteRepository.save(paciente);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
