@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
 public class MedicoWS {
@@ -66,9 +68,8 @@ public class MedicoWS {
     @PutMapping("/actualizarmedico")
     @Transactional
     public ResponseEntity actualizarMedico(@RequestBody Medico medico) {
-        String mensaje = "ACTUALIZADO";
         medicoRepository.save(medico);
-        return ResponseEntity.status(HttpStatus.OK).body(mensaje);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
     //localhost:8081/api/buscarnombre
     @GetMapping("/buscarnombre")
@@ -92,5 +93,20 @@ public class MedicoWS {
     @GetMapping("/medicosInactivos")
     public List<Medico> medicosInactivos() {
         return  medicoRepository.findByActivoFalse();
+    }
+
+    //localhost:8081/api/buscarmedicoporid/{id}
+    @GetMapping("buscarmedicoporid/{id}")
+    public ResponseEntity<?> buscarmedicoporid(@PathVariable int id) {
+        //El Optional se creo para verificar si el ID esta registrado o no existe en Medicos
+        Optional<Medico> doctor = medicoRepository.findById(id);
+
+        // Si no se encuentra, devolver un mensaje de error
+        if (doctor.isEmpty()) {
+            return ResponseEntity.badRequest().body("ID NO ENCONTRADO!");
+        }
+
+        // Si se encuentra, devolver los datos del médico
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(doctor.get());
     }
 }

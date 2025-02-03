@@ -42,13 +42,13 @@ public class PacienteWS {
         return new ResponseEntity(mensaje, HttpStatus.CREATED);
     }
 
-    @PostMapping("/guardarPaciente")
+    /*@PostMapping("/guardarPaciente")
     public ResponseEntity guardarPaciente(@RequestBody Paciente paciente) {
         String mensaje = "GUARDADO!";
         pacienteRepository.save(paciente);
         return ResponseEntity.status(HttpStatus.OK).body(mensaje);
 
-    }
+    }*/
 
     //localhost:8081/api/daralta
     @PutMapping("/daralta")
